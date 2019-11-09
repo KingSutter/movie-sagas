@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = reduxState => ({
-    reduxState,
-});
+const mapStateToProps = (reduxState) => {
+    // return {movies: reduxState.moviesReducer}
+    return reduxState;
+}
 
 class MovieList extends Component {
     componentDidMount() {
@@ -14,7 +15,10 @@ class MovieList extends Component {
     render() {
         return (
             <>
-                {JSON.stringify(this.props,null,2)}
+                {this.props.movies.map((movie) => (
+                    <img src={movie.poster} alt={movie.title} />
+                    
+                ))}
             </>
         )
     }
