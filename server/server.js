@@ -8,7 +8,8 @@ app.use(bodyParser.json()); // needed for angular requests
 app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
-
+/* Routes */
+app.use('/movies', plantRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
