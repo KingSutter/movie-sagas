@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieList from '../MovieList/MovieList'
+import {Link, Router, Route } from 'react-router';
 
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
+      <Router>
       <div className="App">
-        <MovieList />
+        <Route path="/" component={MovieList} />
+        <MovieDetails movie={this.props.movie} />
+        <Route path="/details" render={(props) => <MovieDetails {...this.props.movie}/>} />
       </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (reduxState) => {
+  // return {movies: reduxState.moviesReducer}
+  return reduxState;
+}
+
+export default connect(mapStateToProps)(App);
