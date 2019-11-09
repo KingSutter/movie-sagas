@@ -16,8 +16,11 @@ class MovieList extends Component {
         return (
             <>
                 {this.props.movies.map((movie) => (
-                    <img src={movie.poster} alt={movie.title} />
-                    
+                    <div>
+                        <img src={movie.poster} alt={movie.title} />
+                        <p>{movie.title}</p>
+                        <p>{movie.description}</p>
+                    </div>
                 ))}
             </>
         )
