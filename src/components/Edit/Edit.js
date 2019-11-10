@@ -28,6 +28,7 @@ class Edit extends Component {
         editedMovie.title = this.state.titleIn;
         editedMovie.description = this.state.descripionIn;
         this.props.dispatch({type: 'POST_MOVIE', payload: editedMovie})
+        this.props.history.path('/details');
     }
 
     render(){
@@ -39,8 +40,8 @@ class Edit extends Component {
                     <button onClick={this.handleSubmit}>Save</button>
                 </form>
             <button onClick={()=>{this.props.history.push('/MovieDetails')}}>Cancel</button>
-        {/* <pre>{JSON.stringify(this.props.movie,null,2)}</pre> */}
-        <pre>{JSON.stringify(this.state,null,2)}</pre>
+        <h1>{this.props.movie.title}</h1>
+        <p>{this.props.movie.description}</p>
             </div>
         )
     }
