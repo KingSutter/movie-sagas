@@ -16,7 +16,7 @@ class MovieList extends Component {
     // sends clicked on movie up to redux state
     goToDetails = (movie) => {
         this.props.dispatch({type: 'PUSH_DETAILS', payload: movie})
-        this.props.history.push('/details')
+        this.props.history.push('/MovieDetails')
     }
 
     render() {
