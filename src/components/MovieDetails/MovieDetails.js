@@ -4,7 +4,8 @@ class MovieDetails extends Component {
     render() {
         return (
             <>
-                <p>Details go here</p>
+                <h1>{this.props.movie.title}</h1>
+                <p>{this.props.movie.description}</p>
             </>
         )
     }
