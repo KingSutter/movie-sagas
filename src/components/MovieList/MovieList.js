@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import withRouter from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (reduxState) => {
     // return {movies: reduxState.moviesReducer}
@@ -16,6 +16,7 @@ class MovieList extends Component {
     // sends clicked on movie up to redux state
     goToDetails = (movie) => {
         this.props.dispatch({type: 'PUSH_DETAILS', payload: movie})
+        this.props.history.push('/details')
     }
 
     render() {
