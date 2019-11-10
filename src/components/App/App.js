@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import MovieList from '../MovieList/MovieList'
 import {Link, Router, Route } from 'react-router';
+import MovieDetails from '../MovieDetails/MovieDetails';
+import {connect} from 'react-redux';
 
 class App extends Component {
   // Renders the entire app on the DOM
@@ -11,7 +13,7 @@ class App extends Component {
       <div className="App">
         <Route path="/" component={MovieList} />
         <MovieDetails movie={this.props.movie} />
-        <Route path="/details" render={(props) => <MovieDetails {...this.props.movie}/>} />
+        <Route path="/details" render={(props) => <MovieDetails {...props} movie={this.props.movie}/>} />
       </div>
       </Router>
     );
@@ -20,7 +22,7 @@ class App extends Component {
 
 const mapStateToProps = (reduxState) => {
   // return {movies: reduxState.moviesReducer}
-  return reduxState;
+  return {movie: reduxState.movieDetails};
 }
 
 export default connect(mapStateToProps)(App);
