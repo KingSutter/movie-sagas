@@ -16,6 +16,7 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMoviesSaga);
+    yield takeEvery('POST_MOVIE', postMovieSaga);
 }
 
 
@@ -41,9 +42,19 @@ function* getMoviesSaga(action) {
       console.log(moviesResponse);
       yield put({ type: 'SET_MOVIES', payload: moviesResponse.data })
     } catch (error) {
-      console.log('error fetching plants', error);  
+      console.log('error fetching movies', error);  
     }
   }
+
+function* postMovieSaga(action){
+    try{
+        yield axios.post('/movies', action.payload);
+        yield put({ type: 'GET_MOVIES'});
+    } catch(error) {
+        console.log('error editing movies', error); 
+        
+    }
+}
 
 // Used to store the movie genres
 const genres = (state = [], action) => {
@@ -57,7 +68,7 @@ const genres = (state = [], action) => {
 
 // Used to store clicked on movie
 const movieDetails = (state = {}, action) => {
-    if (action.type == "PUSH_DETAILS"){
+    if (action.type === "PUSH_DETAILS"){
         return action.payload;
     }
     return state;
