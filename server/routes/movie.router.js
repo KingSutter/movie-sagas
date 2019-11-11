@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/genre/:id', (req,res) => {
+router.get('/genre', (req,res) => {
     const queryText=`
     SELECT "movies".id, "genres".name from "movies"
     JOIN "movies_genres" ON "movies_genres".movie_id="movies".id

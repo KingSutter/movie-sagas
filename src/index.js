@@ -47,7 +47,7 @@ function* postMovieSaga(action){
 
 function* getGenreSaga(action){
     try{
-        const genresResponse = yield axios.get(`/movies/genre/${action.payload}`)
+        const genresResponse = yield axios.get(`/movies/genres/`)
         yield put({ type: 'SET_GENRES', payload: genresResponse.data })
     }catch(error){
         console.log('error getting genre', error);
