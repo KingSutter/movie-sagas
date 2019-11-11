@@ -25,8 +25,8 @@ class MovieList extends Component {
         return (
             <>
                 {this.props.movies.map((movie) => (
-                    <div key={movie.id}>
-                        <img src={movie.poster} alt={movie.title} onClick={()=>{this.goToDetails(movie)}}/>
+                    <div key={movie.id} onClick={()=>{this.goToDetails(movie)}}>
+                        <img src={movie.poster} alt={movie.title} />
                         <h1>{movie.title}</h1>
                         <p>{movie.description}</p>
                     </div>
