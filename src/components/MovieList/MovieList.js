@@ -11,6 +11,8 @@ class MovieList extends Component {
     componentDidMount() {
         // gets movies from database
         this.props.dispatch({type: 'GET_MOVIES'})
+        // gets genres from DB
+        this.props.dispatch({type: 'GET_GENRES'});
     }
 
     // sends clicked on movie up to redux state
