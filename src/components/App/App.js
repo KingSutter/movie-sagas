@@ -4,7 +4,6 @@ import {
   HashRouter as Router,
   Route,
 } from "react-router-dom";
-import {connect} from 'react-redux';
 
 // import components
 import MovieList from '../MovieList/MovieList'
@@ -26,9 +25,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (reduxState) => {
-  // return {movies: reduxState.moviesReducer}
-  return {movie: reduxState.movieDetails};
-}
-
-export default connect(mapStateToProps)(App);
+export default App;
