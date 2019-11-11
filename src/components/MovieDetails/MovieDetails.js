@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class MovieDetails extends Component {
     state = {
@@ -26,7 +27,7 @@ class MovieDetails extends Component {
             <>
             <div>
                 <button onClick={()=>{this.props.history.push('/')}}>Back to List</button>
-                <button onClick={()=>{this.props.history.push('/Edit')}}>Edit</button>
+                <button onClick={()=>{this.props.history.push('/edit')}}>Edit</button>
                 <h1>{this.props.movie.title}</h1>
                 <p>{this.props.movie.description}</p>
                 <ul>
@@ -44,4 +45,4 @@ const mapStateToProps = (reduxState) => {
     return {movie: reduxState.movieDetails, genres: reduxState.genres};
   }
 
-export default connect(mapStateToProps)(MovieDetails);
+export default withRouter(connect(mapStateToProps)(MovieDetails));
