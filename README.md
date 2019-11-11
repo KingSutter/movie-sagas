@@ -2,7 +2,7 @@
 
 An application for viewing movies and genres and editing the title and description as needed.
 
-NOTE: If you would like to skip the installation onto your local machine, you can head to [my online version of app](https://movie-list-willsutter.herokuapp.com/#/)
+NOTE: If you would like to skip the installation onto your local machine, you can head to [my online version of the app](https://movie-list-willsutter.herokuapp.com/#/)
 
 
 ## Installation
