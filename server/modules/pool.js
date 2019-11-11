@@ -38,4 +38,19 @@ if (process.env.DATABASE_URL) {
     };
 }
 
+// this creates the pool that will be shared by all other modules
+const pool = new pg.Pool(config);
+
+// the pool will log when it connects to the database
+pool.on('connect', () => {
+  console.log('Postgesql connected');
+});
+
+// the pool with emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err) => {
+  console.log('Unexpected error on idle client', err);
+  process.exit(-1);
+});
+
 module.exports = new pg.Pool(config);
