@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 class MovieDetails extends Component {
+    state = {
+        genres: [],
+    }
+
     componentDidMount(){
         this.getGenresByID();
     }
+
     // gets all genres based on movie ID
     getGenresByID = () => {
         let genresByID = [];
         this.props.genres.forEach(genre => {
-            if(this.props.movie.id == genre.id){
+            if(this.props.movie.id === genre.id){
                 genresByID.push(genre.name)
             }
         });
@@ -24,7 +29,11 @@ class MovieDetails extends Component {
                 <button onClick={()=>{this.props.history.push('/Edit')}}>Edit</button>
                 <h1>{this.props.movie.title}</h1>
                 <p>{this.props.movie.description}</p>
-                {JSON.stringify(this.props.genres,null,2)}
+                <ul>
+                    {this.state.genres.map((genre)=>(
+                        <li key={genre}>{genre}</li>
+                    ))}
+                </ul>
             </div>
             </>
         )
@@ -32,9 +41,7 @@ class MovieDetails extends Component {
 }
 
 const mapStateToProps = (reduxState) => {
-    // return {movies: reduxState.moviesReducer}
     return {movie: reduxState.movieDetails, genres: reduxState.genres};
   }
-
 
 export default connect(mapStateToProps)(MovieDetails);
