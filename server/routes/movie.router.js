@@ -31,6 +31,22 @@ router.post('/', (req, res) => {
         console.log('Error completing POST movies query',error);
         res.sendStatus(500);
     });
-})
+});
+
+router.get('/genre', (req,res) => {
+    const queryText=`
+    SELECT "movies".title, "genres".name from "movies"
+    JOIN "movies_genres" ON "movies_genres".movie_id="movies".id
+    JOIN "genres" ON "movies_genres".genre_id="genres".id
+    WHERE "movies_genres".movie_id = '${req.body}';`
+    pool.query(queryText)
+    .then((result) => { 
+        res.send(result.rows); })
+    .catch((err) => {
+        console.log('Error completing SELECT movies query', err);
+        res.sendStatus(500);
+    });
+    
+});
 
 module.exports = router;
