@@ -33,20 +33,18 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/genre', (req,res) => {
+router.get('/genre/:id', (req,res) => {
     const queryText=`
-    SELECT "movies".title, "genres".name from "movies"
+    SELECT "movies".id, "genres".name from "movies"
     JOIN "movies_genres" ON "movies_genres".movie_id="movies".id
-    JOIN "genres" ON "movies_genres".genre_id="genres".id
-    WHERE "movies_genres".movie_id = '${req.body}';`
+    JOIN "genres" ON "movies_genres".genre_id="genres".id;`
     pool.query(queryText)
-    .then((result) => { 
+    .then((result) => {
         res.send(result.rows); })
     .catch((err) => {
-        console.log('Error completing SELECT movies query', err);
+        console.log('Error completing SELECT genres query', err);
         res.sendStatus(500);
     });
-    
 });
 
 module.exports = router;

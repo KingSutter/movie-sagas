@@ -17,23 +17,12 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMoviesSaga);
     yield takeEvery('POST_MOVIE', postMovieSaga);
+    yield takeEvery('GET_GENRES', getGenreSaga);
 }
 
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
-
-// Used to store movies returned from the server
-const movies = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_MOVIES':
-            console.log(action.payload);
-            
-            return action.payload;
-        default:
-            return state;
-    }
-}
 
 function* getMoviesSaga(action) {
     try {
@@ -53,6 +42,27 @@ function* postMovieSaga(action){
     } catch(error) {
         console.log('error editing movies', error); 
         
+    }
+}
+
+function* getGenreSaga(action){
+    try{
+        const genresResponse = yield axios.get(`/movies/genre/${action.payload}`)
+        yield put({ type: 'SET_GENRES', payload: genresResponse.data })
+    }catch(error){
+        console.log('error getting genre', error);
+    }
+}
+
+// Used to store movies returned from the server
+const movies = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_MOVIES':
+            console.log(action.payload);
+            
+            return action.payload;
+        default:
+            return state;
     }
 }
 
